@@ -45,3 +45,40 @@ class Character:
             json.dump(data, f, indent=4)
         print(f" Progress saved for {self.name}!")
 
+
+def main():
+    arisen = Character("Kaine", 20, "Warrior")
+    mainPawn = Character("Mikhail", 19, "Archer")
+
+    print("--- RPG Character Manager ---")
+
+    while True:
+        print(f"\nCurrently Managing: {arisen.name}")
+        print("1. Display status")
+        print("2. Level up")
+        print("3. Change Armor")
+        print("4. Exit")
+
+        choice = input("Select an option 1-4: ")
+
+        if choice == "1":
+            arisen.display_status()
+        elif choice == "2":
+            arisen.level_up()
+        elif choice == "3":
+            helmet = input("Enter helmet: ")
+            body = input("Enter body armor: ")
+            gauntlets = input("Enter gauntlets: ")
+            boots = input("Enter boots: ") 
+            cape = input("Enter cape: ")
+            arisen.set_equipment(helmet, body, gauntlets, boots, cape)
+            print("Equipment updated.")
+        elif choice == "4":
+            arisen.save_to_file()
+            print("Safe travels!")   
+            break
+        else:
+            print("Invalid choice.")
+        
+if __name__ == "__main__":
+    main()
