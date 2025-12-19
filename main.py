@@ -46,39 +46,87 @@ class Character:
         print(f" Progress saved for {self.name}!")
 
 
-def main():
-    arisen = Character("Kaine", 20, "Warrior")
-    mainPawn = Character("Mikhail", 19, "Archer")
+def main(arisenName, pawnName, pawnVocation, arisenVocation):
+    arisen = Character(arisenName, 1, arisenVocation)
+    mainPawn = Character(pawnName, 1, pawnVocation)
 
     print("--- RPG Character Manager ---")
 
-    while True:
-        print(f"\nCurrently Managing: {arisen.name}")
-        print("1. Display status")
-        print("2. Level up")
-        print("3. Change Armor")
-        print("4. Exit")
+    aoP = input("Manage the Arisen or your Pawn?")
 
-        choice = input("Select an option 1-4: ")
+    if aoP.lower() == "arisen":
+        while True:
+            print(f"\nCurrently Managing: {arisen.name}")
+            print("1. Display status")
+            print("2. Level up")
+            print("3. Change Armor")
+            print("4. Exit")
 
-        if choice == "1":
-            arisen.display_status()
-        elif choice == "2":
-            arisen.level_up()
-        elif choice == "3":
-            helmet = input("Enter helmet: ")
-            body = input("Enter body armor: ")
-            gauntlets = input("Enter gauntlets: ")
-            boots = input("Enter boots: ") 
-            cape = input("Enter cape: ")
-            arisen.set_equipment(helmet, body, gauntlets, boots, cape)
-            print("Equipment updated.")
-        elif choice == "4":
-            arisen.save_to_file()
-            print("Safe travels!")   
-            break
-        else:
-            print("Invalid choice.")
-        
-if __name__ == "__main__":
-    main()
+            choice = input("Select an option 1-4: ")
+
+            if choice == "1":
+                arisen.display_status()
+            elif choice == "2":
+                arisen.level_up()
+            elif choice == "3":
+                helmet = input("Enter helmet: ")
+                body = input("Enter body armor: ")
+                gauntlets = input("Enter gauntlets: ")
+                boots = input("Enter boots: ") 
+                cape = input("Enter cape: ")
+                arisen.set_equipment(helmet, body, gauntlets, boots, cape)
+                print("Equipment updated.")
+            elif choice == "4":
+                arisen.save_to_file()
+                print("Safe travels!")  
+                break 
+            else:
+                print("Invalid choice.")
+
+    elif aoP.lower() == "pawn":
+        while True:
+            print(f"\nCurrently Managing: {mainPawn.name}")
+            print("1. Display status")
+            print("2. Level up")
+            print("3. Change Armor")
+            print("4. Exit")
+
+            choice = input("Select an option 1-4: ")
+
+            if choice == "1":
+                mainPawn.display_status()
+            elif choice == "2":
+                mainPawn.level_up()
+            elif choice == "3":
+                helmet = input("Enter helmet: ")
+                body = input("Enter body armor: ")
+                gauntlets = input("Enter gauntlets: ")
+                boots = input("Enter boots: ") 
+                cape = input("Enter cape: ")
+                mainPawn.set_equipment(helmet, body, gauntlets, boots, cape)
+                print("Equipment updated.")
+            elif choice == "4":
+                mainPawn.save_to_file()
+                print("Safe travels!")  
+                break 
+            else:
+                print("Invalid choice.")
+
+arisenName = input("Enter the name of your Arisen: ")
+pawnName = input("Enter the name of your pawn: ")
+print("--- The Vocations ---")
+print("")
+print(" Thief " \
+" Sorcerer " \
+" Warfarer " \
+" Trickster " \
+" Magick Archer " \
+" Mage " \
+" Warrior " \
+" Mystic Spearhand " \
+" Archer " \
+" Fighter ")
+arisenVocation = input("Enter your vocation: ")
+pawnVocation = input("Enter your pawn's vocation: ")
+
+print(main(arisenName, pawnName, pawnVocation, arisenVocation))
