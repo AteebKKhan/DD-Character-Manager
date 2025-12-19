@@ -1,5 +1,3 @@
-import json
-
 class Character:
     def __init__(self, name, level, vocation):
         self.name = name
@@ -28,22 +26,12 @@ class Character:
         print(f"-- Vocation: {self.vocation} --")
         print(f"-- Armor: {self.helmet}, {self.body_armor}, {self.gauntlets}, {self.boots}, {self.cape} --")
 
-    def save_to_file(self):
-        data = {
-            "name": self.name,
-            "level": self.level,
-            "vocation": self.vocation,
-            "equipment": {
-                "helmet": self.helmet,
-                "body_armor": self.body_armor,
-                "gauntlets": self.gauntlets,
-                "boots": self.boots,
-                "cape": self.cape
-            }
-        }
-        with open(f"{self.name}_save.json", "w") as f:
-            json.dump(data, f, indent=4)
-        print(f" Progress saved for {self.name}!")
+    def save_to_file(self): #creates text file documenting new character data. plan to expand this further.
+        newFile = "RPG_Data.txt"
+        with open("RPG_Data.txt", "a") as f:
+            f.write(f"Name of Character: {self.name} \n Vocation: {self.vocation} \n Level: {self.level}")
+            f.write(f"Equipment: ")
+            f.write(f"Helmet: {self.helmet} \n Body Armor: {self.body_armor} \n Gauntlets: {self.gauntlets} \n Boots: {self.boots} \n Cape: {self.cape}")
 
 
 def main(arisenName, pawnName, pawnVocation, arisenVocation):
@@ -106,9 +94,10 @@ def main(arisenName, pawnName, pawnVocation, arisenVocation):
                 mainPawn.set_equipment(helmet, body, gauntlets, boots, cape)
                 print("Equipment updated.")
             elif choice == "4":
+                arisen.save_to_file()   
                 mainPawn.save_to_file()
-                print("Safe travels!")  
-                break 
+                print("All party data saved. Safe travels!")  
+                break
             else:
                 print("Invalid choice.")
 
